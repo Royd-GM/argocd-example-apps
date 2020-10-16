@@ -1,0 +1,19 @@
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  name: guestbook-ui
+  namespace: thomas-playground
+  labels:
+spec:
+  rules:
+    - host: guestbook.infra.bcc.gmbh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: guestbook-ui
+              servicePort: 80
