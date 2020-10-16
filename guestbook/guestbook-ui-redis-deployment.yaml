@@ -1,0 +1,37 @@
+---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: guestbook-db
+    labels:
+      name: guestbook-db
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: guestbook-db
+    template:
+      metadata:
+        labels:
+          name: guestbook-db
+        annotations:
+          prometheus.io.scrape: "false"
+      spec:
+        containers:
+        - name: guestbook-db
+          image: redis:alpine
+          ports:
+          - name: redis
+            containerPort: 6379
+          securityContext:
+            capabilities:
+              drop:
+                - all
+              add:
+                - CHOWN
+                - SETGID
+                - SETUID
+            readOnlyRootFilesystem: true
+        nodeSelector:
+          beta.kubernetes.io/os: linux
+  

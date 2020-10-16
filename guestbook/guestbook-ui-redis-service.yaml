@@ -1,0 +1,14 @@
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: guestbook-db
+    labels:
+      name: guestbook-db
+  spec:
+    ports:
+    - port: 6379
+      targetPort: 6379
+    selector:
+      name: guestbook-db
+  
