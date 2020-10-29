@@ -10,7 +10,7 @@ metadata:
   labels:
 spec:
   rules:
-    - host: guestbook.infra.bcc.gmbh
+    - host: guestbook.inga.genesis-mining.com
       http:
         paths:
           - path: /
